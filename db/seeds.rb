@@ -11,3 +11,7 @@ Ingredient.create(name: "ice")
 Ingredient.create(name: "mint leaves")
 
 Cocktail.create(name: "mojito")
+Cocktail.create(name: "Samba Colada")
+Cocktail.create(name: "Wagon Cocktail")
+Cocktail.create(name: "Benoit Colada")
+Cocktail.create(name: "Samba special")
