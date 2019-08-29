@@ -6,12 +6,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Ingredient.create(name: "lemon")
-Ingredient.create(name: "ice")
-Ingredient.create(name: "mint leaves")
+# desroy first: Class with references:
+Cocktail.destroy_all
+Ingredient.destroy_all
+# create cocktail data array
 
-Cocktail.create(name: "mojito")
-Cocktail.create(name: "Samba Colada")
-Cocktail.create(name: "Wagon Cocktail")
-Cocktail.create(name: "Benoit Colada")
-Cocktail.create(name: "Samba special")
+cocktails = [
+  ['Mojito', 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'],
+  ['Samba Colada', 'https://images.unsplash.com/photo-1527761939622-9119094630cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'],
+  ['Wagon Cocktail', 'https://images.unsplash.com/photo-1550426735-c33c7ce414ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'],
+  ['Benoit Colada', 'https://images.unsplash.com/photo-1553451133-8083c47243d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'],
+  ['Samba Special', 'https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60']
+]
+
+# create new cocktails from array
+
+cocktails.each do |name, photo|
+  cocktail = Cocktail.create!(name: name)
+  cocktail.remote_photo_url = photo
+  cocktail.save
+end
+
+puts 'cocktails have been created'
+
+Ingredient.create(name: 'lemon')
+Ingredient.create(name: 'ice')
+Ingredient.create(name: 'mint leaves')
+
+puts 'ingredients have been created'

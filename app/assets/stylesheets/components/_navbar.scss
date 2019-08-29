@@ -26,3 +26,10 @@
 .link-add:hover {
   color: #414141 !important;
  }
+
+.fixed-top {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
