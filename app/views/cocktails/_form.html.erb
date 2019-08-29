@@ -1,10 +1,9 @@
 <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name %>
+  <%= f.input :photo %>
   <%= f.button :submit, class: "btn btn-primary" %>
   <% if !@cocktail.id %>
       <%= link_to "View all cocktails", cocktails_path, class: "btn btn-success" %>
-
   <% end %>
-
 <% end %>
 

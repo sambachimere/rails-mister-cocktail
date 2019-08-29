@@ -1,3 +1,4 @@
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -8,5 +9,20 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 75px;
 }
+
+.main-title {
+  color: #2d2d2b;
+}
+
+.link-add {
+  text-decoration: none;
+  color: black;
+  font-size: 29px;
+  margin-right: 26px;
+}
+
+.link-add:hover {
+  color: #414141 !important;
+ }
