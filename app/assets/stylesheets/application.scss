@@ -44,3 +44,15 @@ body {
 a:hover {
   text-decoration: none;
 }
+
+.ingredients {
+  border-left: solid 1px black;
+  margin-left: 45px;
+  padding-left: 36px;
+}
+.ingredient {
+  border-bottom: 1px solid black;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  color: black;
+}

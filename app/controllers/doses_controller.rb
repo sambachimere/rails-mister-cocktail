@@ -10,14 +10,15 @@ class DosesController < ApplicationController
     @dose.cocktail = @cocktail
     @ingredient = Ingredient.find(params[:dose][:ingredient_id])
     @dose.ingredient = @ingredient
-    # raise
     @dose.save
     redirect_to @dose.cocktail
   end
 
   def destroy
-    @dose = Dose.find(params[:cocktail_id][:id])
-    @dose.delete
+    @dose = Dose.find(params[:id])
+    @cocktail = @dose.cocktail
+    @dose.destroy
+    redirect_to cocktail_path(@cocktail)
   end
 
   private

@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'json'
+require 'open-uri'
+
 # desroy first: Class with references:
 Cocktail.destroy_all
 Ingredient.destroy_all
@@ -29,8 +32,13 @@ end
 
 puts 'cocktails have been created'
 
-Ingredient.create(name: 'lemon')
-Ingredient.create(name: 'ice')
-Ingredient.create(name: 'mint leaves')
+# create new ingredient from json file
+
+result = JSON.parse(open('http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list').read)
+ingredients = result['drinks']
+
+ingredients.each do |ingredient|
+  Ingredient.create(name: ingredient['strIngredient1'])
+end
 
 puts 'ingredients have been created'

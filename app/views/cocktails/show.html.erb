@@ -1,30 +1,49 @@
-<div class="container text-center mt-5">
-  <h1><%= @cocktail.name %></h1>
+<div class="container cocktail-form">
   <div class="row">
-    <div class="d-flex mb-3">
-      <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
-      <% @cocktail.doses.each do |dose| %>
-      <p>
-        <%= dose.description %> <%= dose.ingredient.name %>
-        <%= link_to "Delete dose", cocktail_dose_path(@cocktail.id, dose.id), class: "btn btn-danger" %>
-      </p>
+    <h1 class="form-title-2"><%= @cocktail.name %></h1>
+    <div class="icon d-flex">
+      <%= link_to edit_cocktail_path(@cocktail.id) do %>
+        <%= image_tag "edit-solid.svg" %>
       <% end %>
+      <div class="trash-icon">
+        <%= link_to cocktail_path(@cocktail.id), method: :delete do %>
+          <%= image_tag "trash-solid.svg" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <%= link_to "View all cocktail", cocktails_path, class: "btn btn-primary" %>
-  <%= link_to "Edit cocktail", edit_cocktail_path(cocktail_path), class: "btn btn-info" %>
-  <%= link_to "Destroy cocktail",  cocktail_path(@cocktail), method: :delete, class: "btn btn-info"%>
-  <%= link_to "Add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-info" %>
+  <div class="row">
+    <div class="d-flex mb-3">
+      <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
+    </div>
+    <div class="ingredients">
+      <h2 style="color: #a9c6de;">Recipe</h2>
+      <% @cocktail.doses.each do |dose| %>
+      <div class="ingredient d-flex justify-content-between ml-3">
+        <%= dose.description %> - <%= dose.ingredient.name %>
+        <div class="icon2 d-flex">
+          <div class="trash-icon2">
+            <%= link_to cocktail_dose_path(@cocktail.id, dose.id), method: :delete do %>
+              <%= image_tag "trash-solid.svg" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div class="container mt-5 mb-4">
-  <h1>Add a dose</h1>
-
-  <%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient %>
-  <%= f.button :submit, class: "btn btn-primary" %>
-  <%= link_to "View all cocktail", cocktails_path, class: "btn btn-success" %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mt-5 mb-4">
+      <h1 class="form-title-3">Add a dose</h1>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description, label: "Quantity", collection: [ "1", "2", "3", "4", "5" ]  %>
+        <%= f.association :ingredient %>
+        <%= f.submit "Create", class: "btn-ghost" %>
+      <% end %>
+    </div>
+  </div>
 </div>
